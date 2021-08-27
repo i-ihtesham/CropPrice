@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price Predict</title>
+  <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+
+        span,img {
+            vertical-align: middle;
+         }
+
+        .brand-logo > span,.brand-logo > img {
+            vertical-align: middle;
+        }
+        *{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+.banner{
+    display:block;
+    position: relative;
+}
+.banner::after{
+	height: 100vh;
+	width: 100%;
+	
+  
+	
+  content: "";
+  background:url('https://thumbs.dreamstime.com/b/autumn-landscape-nature-background-dried-flowers-water-drops-rain-field-banner-selective-focus-75038244.jpg');
+  background-position: top;
+	background-size:cover;
+	/*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+  
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+.banner .navbar{
+	margin-top:4%;
+}
+.banner .navbar-brand{
+	color: #fff;
+	font-size:1.8em;
+	font-weight: 700;
+	margin-left: 10%;
+}
+.banner .nav{
+	margin-right:10%; 
+}
+.banner .nav li a{
+	color:#aaa;
+	font-size: 1.2em;
+}
+.banner .info{
+	margin-top:15%;
+	transform: translateY(-15%);
+}
+.banner .info h1{
+	font-size: 2.5em;
+	font-weight: 700;
+	color: #fff;
+	letter-spacing: 2px;
+}
+.banner .info p{
+	font-size: 2em;
+	font-weight: 500;
+	color: #aaa;
+	letter-spacing: 2px;
+}
+.banner .info a{
+	margin-left:50%;
+	transform: translateX(-50%);
+	color: #fff;
+	background: #e91d43;
+	padding:10px 20px; 
+	font-size: 2em;
+	font-weight: 600;
+}
+.banner .info a:hover{
+	background: #e91e63;
+}
+
+
+
+
+
+#facilities{
+    background-color: #dbe5e6;
+    padding: 30px 0px;
+
+}
+#facilities h1{
+    font-weight: 900;
+    font-size: 34px;
+    padding-bottom: 5px;
+}
+.title{
+    text-align: center;
+    padding: 25px 0px;
+}
+.title p{
+    font-size: 18px;
+}
+.card-body{
+    box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+
+}
+.card-img-top {
+    width: 44%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    margin-left: 76px;
+}
+.card{
+    margin: 20px 10px;
+}
+.card-body a{
+    color: #0c7f90;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: auto;
+    font-weight: 600;
+}
+.card-body a:hover{
+    color: #63a6b0;
+    text-decoration: none;
+}
+.hiv a:hover{
+  color: #0056b3;
+    text-decoration: underline;
+}
+.table td, .table th{
+  padding: 1.75rem;
+}
+.footer-dark {
+  padding:50px 0;
+  color:#f0f9ff;
+  background-color:#282d32;
+}
+
+.footer-dark h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-dark ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-dark ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.6;
+}
+
+.footer-dark ul a:hover {
+  opacity:0.8;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item:not(.social) {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+.footer-dark .item.text {
+  margin-bottom:36px;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item.text {
+    margin-bottom:0;
+  }
+}
+
+.footer-dark .item.text p {
+  opacity:0.6;
+  margin-bottom:0;
+}
+
+.footer-dark .item.social {
+  text-align:center;
+}
+
+@media (max-width:991px) {
+  .footer-dark .item.social {
+    text-align:center;
+    margin-top:20px;
+  }
+}
+
+.footer-dark .item.social > a {
+  font-size:20px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+  margin:0 8px;
+  color:#fff;
+  opacity:0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity:0.9;
+}
+
+.footer-dark .copyright {
+  text-align:center;
+  padding-top:24px;
+  opacity:0.3;
+  font-size:13px;
+  margin-bottom:0;
+}
+
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+</head>
+<body class="main">
+  
+  <div class="container-fluid banner">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-md">
+					<div class="navbar-brand"></div>
+					<ul class="nav hiv">
+						<li class="nav-item">
+							<a class="nav-link" href="#">HOME</a>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="#">ABOUT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">CONTACT</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-8 offset-md-2 info" style="position: relative;
+      top: -65px;">
+				<h1 class="text-center" style="color: #4caf61;position: relative;
+        left: 0px;
+        top: -103px;
+        font-size: 65px;
+        font-style: italic;font-family: 'Playfair Display', serif;">CROP PRICE PREDICTION</h1>
+				<p class="text-center">
+					
+				</p>
+				<a href="#live" class="btn btn-md text-center">LIVE TRENDS</a>
+                <br><br>
+                <a href="#facilities" class="btn btn-md text-center">Explore By Commodity</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+  <div style="background: url(https://thumbs.dreamstime.com/b/empty-old-wooden-table-top-bamboo-leaves-frame-blurred-greenery-background-garden-copy-space-your-display-164017255.jpg);
+  margin-top: 52px;
+  background-repeat: no-repeat;
+  background-size: cover;">
+
+
+
+	<div class="container">
+
+    <div class="title" id="live">
+      <h1 class="display-2 text-center" style="color: #ff2f00;
+      margin-top: 34px;
+      
+      font-style: italic; font-family: 'Playfair Display', serif;"">LIVE TRENDS</h1>
+      
+
+  </div>
+
+	</div>
+
+    <!--
+  <h3 class="card-panel #ffd54f amber lighten-2 center valign-wrapper center"><img src="/static/ApnaAnaajLogo.png
+" height="70px" width="70px">Apna Anaaj</h3>
+    -->
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col" style="background-color: #dbe5e6;">
+          <div class="card" style="height: 582px;">
+            <h4 class="display-3" style="color: #0847f5; background-color: #f59b9b; font-family: 'Baloo Chettan 2', cursive; text-align: center; margin-bottom: 0;">Top Gainers</h4>
+            <table class="table">
+              <thead>
+                <tr class="table-secondary">
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Price (per Qtl.)</th>
+                    <th scope="col">Change</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+              {% for item in context['top5'] %}
+                <tr>
+                  <td class="table-danger">{{item[0]}}</td>
+                  <td class="table-warning">₹{{item[1]}}</td>
+                  <td class="table-success">{{item[2]}}% <img src="../static/gain-icon.png" height="25" width="25"></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+              
+          </div>
+        </div>
+        <div class="col" style="background-color: #dbe5e6;">
+          <div class="card" style="height: 582px;">
+            <h4 class="display-3" style="color: #0847f5; background-color: #f59b9b; font-family: 'Baloo Chettan 2', cursive; text-align: center; margin-bottom: 0;">Top Losers</h4>
+            <table class="table">
+              <thead>
+                <tr class="table-secondary">
+                    <th>Item Name</th>
+                    <th>Price (per Qtl.)</th>
+                    <th>Change</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+              {% for item in context['bottom5'] %}
+                <tr>
+                  <td class="table-success">{{item[0]}}</td>
+                  <td class="table-warning">₹{{item[1]}}</td>
+                  <td class="table-danger">{{item[2]}}% <img src="../static/loss-icon.png" height="25" width="25"></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+                  </div>
+        </div>
+        
+      </div>
+      </div>
+    
+    
+    <div class="col-6 container text-center">
+      <div class="card" style="background-color: #cadde0;">
+        <div class="">
+          <h6 class="h4">Star Commodity Prediction</h6>
+          <span class="card-title" id="time">{{context.sixmonths[0][0]}}</span>
+          <table class="valign-wrapper">
+            <tr>
+              <td style="width: 9%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class="table-danger" style="width: 48%;"><h5 id="crop1">{{context.sixmonths[0][1]}}</h5></td>
+                <td style="width: 9%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td  class="table-warning" class="right" style="width: 92%;">
+                  <h4 id="price1">₹{{context.sixmonths[0][2]}}</h4>
+              <p id="pos-change" class="valign-wrapper right">{{context.sixmonths[0][3]}}%</p><img id="change1" src="../static/gain-icon.png" height="20" width="20" style="{margin-left: 5;}"></td>
+
+            </tr>
+            <tr>
+              <td style="width: 9%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class="table-warning" style="width: 48%;"><h5 id="crop2">{{context.sixmonths[0][4]}}</h5></td>
+                <td style="width: 9%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class="right table-danger" style="width:92%;"><h4 id="price2">₹{{context.sixmonths[0][5]}}</h4>
+              <p id="neg-change" class="valign-wrapper right">{{context.sixmonths[0][6]}}%</p><img id="change2" src="../static/loss-icon.png" height="20" width="20" style="{margin-left: 5;}">
+                </td>
+            </tr>
+          </table>
+          <script>
+            function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+             }
+            function updateTime(i){
+              $('#time').load('http://localhost:5000/ticker/'+0+ '/' + i);
+            }
+
+            function updateCrop1(i){
+              $('#crop1').load('http://localhost:5000/ticker/'+ 1 + '/' + i);
+            }
+
+            function updatePrice1(i){
+              $('#price1').load('http://localhost:5000/ticker/'+ 2 + '/' + i);
+            }
+
+            function updateChange1(i){
+              $("#change1").attr("src","../static/gain-icon.png");
+              $('#pos-change').load('http://localhost:5000/ticker/'+ 3 + '/'  + i);
+
+            }
+
+            function updateCrop2(i){
+              $('#crop2').load('http://localhost:5000/ticker/'+ 4 + '/'  + i);
+            }
+
+            function updatePrice2(i){
+              $('#price2').load('http://localhost:5000/ticker/'+ 5 + '/'  + i);
+            }
+
+            function updateChange2(i){
+              $("#change2").attr("src","../static/loss-icon.png");
+              $('#neg-change').load('http://localhost:5000/ticker/'+ 6 + '/'  + i);
+
+            }
+          </script>
+
+            <script>
+                    var i = 0
+                    setInterval(async function(){
+                    i = (i+1)%5;
+                    updateTime(i);
+
+                    updateCrop1(i);
+                    await sleep(200);
+
+                    updatePrice1(i);
+                    await sleep(200);
+
+                    updateChange1(i);
+                    await sleep(200);
+
+                    updateCrop2(i);
+                    await sleep(200);
+
+                    updatePrice2(i);
+                    await sleep(200);
+
+                    updateChange2(i);
+                    await sleep(200);
+
+                    /*
+                    setTimeout(updateCrop1(i), 100);
+                    setTimeout(updatePrice1(i), 300);
+                    setTimeout(updateChange1(i), 500);
+                    setTimeout(updateCrop2(i), 700);
+                    setTimeout(updatePrice2(i), 800);
+                    setTimeout(updateChange2(i), 900);
+                    */
+
+                    }, 4000);
+
+            </script>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <section id ="facilities" style="margin-top: -20px;">
+    <div class="container">
+        <div class="title">
+            <h1>Price Prediction</h1>
+            <p>The price is predicted considering several data parameters such as rainfall, temperature, market prices, area of land and past yield of a crop. The developed crop price prediction system helps farmers to predict price of the commodity.</p>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/rice-bowl.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Paddy
+                        </h5>
+                        <p class="card-text">Paddy, edible starchy cereal grain. Roughly one-half of the world population, including virtually all of East and Southeast Asia, is wholly dependent upon paddy as a staple food</p>
+                        <a href="http://localhost:5000/commodity/paddy">Check</a>
+                    </div>
+                </div>
+            </div>      
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/wheat.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Wheat
+                        </h5>
+                        <p class="card-text">Wheat is a grass widely cultivated for its seed, a cereal grain which is a worldwide staple food. Soils with a clay loam,moderate water holding capacity are ideal for wheat cultivation.</p>
+                        <a href="http://localhost:5000/commodity/wheat">Check</a>
+                    </div>
+                </div>
+            </div>      
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/barley.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Barley
+                        </h5>
+                        <p class="card-text">Barley, cereal plant of the grass family Poaceae and its edible grain. It is the fourth largest grain crop globally.  Barley is a widely adaptable crop.It is currently popular in temperate areas</p>
+                        <a href="http://localhost:5000/commodity/barley">Check</a>
+                    </div>
+                </div>
+            </div>                
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/soy.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Soyabean
+                        </h5>
+                        <p class="card-text">The soybean is a species of legume native to East Asia, widely grown for its edible bean. Soya beans are a good source of protein</p>
+                        <a href="http://localhost:5000/commodity/soyabean">Check</a>
+                    </div>
+                </div>
+            </div>      
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/paper-bag-with-seeds.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Gram
+                        </h5>
+                        <p class="card-text">Gram commonly known as chick pea or is the most important pulse crop of India. It is used for human consumption as well as for feeding to animals.</p>
+                        <a href="http://localhost:5000/commodity/gram">Check</a>
+                    </div>
+                </div>
+            </div>      
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img src="https://img.icons8.com/color/48/000000/coconut.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Coconut
+                        </h5>
+                        <p class="card-text">The coconut referred to as Kalpavriksha as every part of the palm is useful. Kerala, Tamil Nadu, Karnataka, Andhra Pradesh are the major producers</p>
+                        <a href="http://localhost:5000/commodity/copra">Check</a>
+                    </div>
+                </div>
+            </div>                
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+              <div class="card text-center">
+                  <img src="https://img.icons8.com/color/48/000000/peanuts.png" class="card-img-top">
+                  <div class="card-body">
+                      <h5 class="card-title">
+                          Peanuts
+                      </h5>
+                      <p class="card-text">The peanut, also known as the groundnut taxonomically classified as Arachis hypogaea, is a legume crop grown mainly for its edible seeds.</p>
+                      <a href="http://localhost:5000/commodity/groundnut">Check</a>
+                  </div>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class="card text-center">
+                  <img src="https://img.icons8.com/color/48/000000/paper-bag-with-seeds.png" class="card-img-top">
+                  <div class="card-body">
+                      <h5 class="card-title">
+                          Arhar
+                      </h5>
+                      <p class="card-text">Arhar,also known as red gram, is a very old crop of this country.It is the second most important pulse crop in the country.Seeds of arhar are rich in iron</p>
+                      <a href="http://localhost:5000/commodity/arhar">Check</a>
+                  </div>
+              </div>
+          </div>      
+          <div class="col-md-4">
+              <div class="card text-center">
+                  <img src="https://img.icons8.com/color/48/000000/sesame.png" class="card-img-top">
+                  <div class="card-body">
+                      <h5 class="card-title">
+                          Sesame
+                      </h5>
+                      <p class="card-text">Sesame is the oldest indigenous oilseed crop, with longest history of cultivation in India. India ranks first in world with 8.66 Lakh tonnes production.</p>
+                      <a href="http://localhost:5000/commodity/sesamum">Check</a>
+                  </div>
+              </div>
+          </div>                
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <img src="https://img.icons8.com/office/48/000000/wheat.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Ragi
+                    </h5>
+                    <p class="card-text">Ragi also known as millet. It is an important staple food in parts of eastern and central Africa and India. It is an important cereal in Karnataka.</p>
+                    <a href="http://localhost:5000/commodity/ragi">Check</a>
+                </div>
+            </div>
+        </div>      
+        <div class="col-md-4">
+            <div class="card text-center">
+                <img src="https://img.icons8.com/color/48/000000/corn.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Maize
+                    </h5>
+                    <p class="card-text">Maize, versatile crop having wider adaptability under varied agro-climatic conditions. In India,it is the third most important food crops.</p>
+                    <a href="http://localhost:5000/commodity/maize">Check</a>
+                </div>
+            </div>
+        </div>      
+        <div class="col-md-4">
+            <div class="card text-center">
+                <img src="https://img.icons8.com/color/48/000000/paper-bag-with-seeds.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Masoor
+                    </h5>
+                    <p class="card-text">Masoor also known as lentil,is an edible legume. It is one of the most important protein rich pulse crop. It is an annual plant known for its lens-shaped seeds.</p>
+                    <a href="http://localhost:5000/commodity/masoor">Check</a>
+                </div>
+            </div>
+        </div>                
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+          <div class="card text-center">
+              <img src="https://img.icons8.com/color/48/000000/paper-bag-with-seeds.png" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title">
+                      Urad
+                  </h5>
+                  <p class="card-text">Urad also known as black gram. The urad crop is resistant to adverse climatic conditions and improves soil fertility by fixing atmospheric nitrogen in soil.</p>
+                  <a href="http://localhost:5000/commodity/urad">Check</a>
+              </div>
+          </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="card text-center">
+              <img src="https://img.icons8.com/color/48/000000/potato.png" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title">
+                      Jute
+                  </h5>
+                  <p class="card-text">Jute is also called the "golden fiber" for its color and high cash value. Jute cultivation is mainly concentrated in the eastern and north eastern India</p>
+                  <a href="http://localhost:5000/commodity/jute">Check</a>
+              </div>
+          </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="card text-center">
+              <img src="https://img.icons8.com/color/48/000000/paper-bag-with-seeds.png" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title">
+                      Jowar
+                  </h5>
+                  <p class="card-text">Jowar is one of the important food and fodder cereal crops cultivated across India.This cereal crop can be cultivated in both Kharif and Rabi season</p>
+                  <a href="http://localhost:5000/commodity/jowar">Check</a>
+              </div>
+          </div>
+      </div>                
+  </div>
+
+    
+    
+      </div>
+</section>
+<div class="footer-dark">
+  <footer>
+      <div class="container">
+          <div class="row">
+              
+              
+              
+              <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+          </div>
+          <p class="copyright">Price Predict © 2021</p>
+      </div>
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('.slider').slider({full_width :true});
+  });
+</script>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>
